@@ -1,8 +1,12 @@
+import AdvertisedItems from "./AdvertisedItems/AdvertisedItems";
+import Banner from "./Banner/Banner";
+
 const Home = () => {
 
   return (
     <div>
-      Home
+      <Banner />
+      <AdvertisedItems />
     </div>
   );
 }
