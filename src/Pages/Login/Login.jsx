@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
@@ -12,7 +13,7 @@ const Login = () => {
     login(data.email, data.password)
     .then(result => {
       const user = result.user;
-      setLoginUserEmail(data.email);
+      // setLoginUserEmail(data.email);
     })
     .catch(err => {
       console.error(err);
@@ -62,6 +63,9 @@ const Login = () => {
         </div>
         <button className="btn btn-primary w-full mt-4" type="submit">Login</button>
         {loginError && <p className="text-error text-center font-bold">{loginError}</p>}
+        <p className="text-sm font-semibold text-center mt-3">New to Used Car Mart? <Link className="link font-bold text-blue-500 hover:text-blue-400" to="/signup">Click here to create an account</Link></p>
+        <div className="divider">OR</div>
+        <button type="button" className="btn btn-primary btn-outline w-full">Login With Google</button>
       </form>
     </div>
   );
