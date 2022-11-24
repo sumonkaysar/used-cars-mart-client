@@ -8,7 +8,7 @@ const Navbar = () => {
   </>
 
   return (
-    <nav className="bg-primary text-primary-content fixed w-full">
+    <nav className="bg-primary text-primary-content fixed w-full z-10">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
           <Link to='/' className="btn btn-ghost normal-case text-xl">Used Cars Mart</Link>
