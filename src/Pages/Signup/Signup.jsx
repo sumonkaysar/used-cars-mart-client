@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Signup = () => {
-  const { signup } = useContext(AuthContext);
+  const { signup, updateUser } = useContext(AuthContext);
   const { register, formState: { errors }, handleSubmit } = useForm();
   const [signupError, setSignupError] = useState('');
 
@@ -21,7 +21,8 @@ const Signup = () => {
           .then(() => {
             saveUser({
               name: data.name,
-              email: data.email
+              email: data.email,
+              role: data.role
             })
           })
       })
@@ -38,6 +39,21 @@ const Signup = () => {
         }
       });
   }
+  
+  const saveUser = (user) => {
+    fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data => {
+    })
+    .catch(err => console.error(err));
+  }
+  
   return (
     <div className="mx-5">
       <form onSubmit={handleSubmit(handleSignup)} className="w-full md:w-3/4 lg:w-1/2 xl:w-2/5 mx-auto shadow-xl p-5 rounded-lg">
@@ -79,7 +95,6 @@ const Signup = () => {
               <input
                 type="radio"
                 id="buyer"
-                // name="role"
                 className="radio radio-primary"
                 {...register("role")}
                 value="buyer"
@@ -91,11 +106,9 @@ const Signup = () => {
               <input
                 type="radio"
                 id="seller"
-                // name="role"
                 className="radio radio-primary"
                 {...register("role")}
                 value="seller"
-                defaultChecked
               />
               <label htmlFor="seller">Seller</label>
             </div>

@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
@@ -13,7 +14,7 @@ const Login = () => {
     login(data.email, data.password)
     .then(result => {
       const user = result.user;
-      // setLoginUserEmail(data.email);
+      toast.success("Logged in successfully")
     })
     .catch(err => {
       console.error(err);

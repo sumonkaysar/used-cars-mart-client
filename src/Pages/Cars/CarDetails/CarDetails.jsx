@@ -1,6 +1,6 @@
 import { FaCheckCircle } from 'react-icons/fa';
 
-const CarDetails = ({ car }) => {
+const CarDetails = ({ car, setBookCar }) => {
   const { name, img, location, resalePrice, originalPrice, usedYears, sellerName, sellerVerified, postedTime } = car;
 
   return (
@@ -15,7 +15,11 @@ const CarDetails = ({ car }) => {
         <p className="-mb-3">Seller: <span className="font-bold inline-flex items-center gap-2">{sellerName} {sellerVerified && <FaCheckCircle className='text-xl' color='#1a1aff' />}</span></p>
         <p><small>Posted on: <span className="font-bold">{postedTime}</span></small></p>
         <div className="card-actions">
-          <button className="btn btn-primary">Book Now</button>
+          <label
+            onClick={() => setBookCar(car)}
+            htmlFor="booking-modal"
+            className="btn btn-primary"
+          >Book Now</label>
         </div>
       </div>
     </div>
