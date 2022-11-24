@@ -11,7 +11,7 @@ const Navbar = () => {
     <nav className="bg-primary text-primary-content fixed w-full">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
-          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+          <Link to='/' className="btn btn-ghost normal-case text-xl">Used Cars Mart</Link>
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal p-0">

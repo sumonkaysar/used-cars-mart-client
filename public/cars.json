@@ -1,0 +1,80 @@
+[
+  {
+    "_id": 1,
+    "name": "BMW I8",
+    "img": "https://imgd.aeplcdn.com/1056x594/n/pofgura_1428547.jpg?q=75",
+    "location": "Panchdona, Narsingdi",
+    "resalePrice": 80000,
+    "orginalPrice": 143000,
+    "usedYears": 1,
+    "categoryId": 1,
+    "sellerName": "Sumon Kaysar",
+    "sellerVerified": true,
+    "postedTime": "24th Nov 2022"
+  },
+  {
+    "_id": 2,
+    "name": "BMW I8",
+    "img": "https://imgd.aeplcdn.com/1056x594/n/pofgura_1428547.jpg?q=75",
+    "location": "Panchdona, Narsingdi",
+    "resalePrice": 80000,
+    "orginalPrice": 143000,
+    "usedYears": 1,
+    "categoryId": 1,
+    "sellerName": "Sumon Kaysar",
+    "sellerVerified": true,
+    "postedTime": "24th Nov 2022"
+  },
+  {
+    "_id": 3,
+    "name": "BMW I8",
+    "img": "https://imgd.aeplcdn.com/1056x594/n/pofgura_1428547.jpg?q=75",
+    "location": "Panchdona, Narsingdi",
+    "resalePrice": 80000,
+    "orginalPrice": 143000,
+    "usedYears": 1,
+    "categoryId": 2,
+    "sellerName": "Sumon Kaysar",
+    "sellerVerified": true,
+    "postedTime": "24th Nov 2022"
+  },
+  {
+    "_id": 4,
+    "name": "BMW I8",
+    "img": "https://imgd.aeplcdn.com/1056x594/n/pofgura_1428547.jpg?q=75",
+    "location": "Panchdona, Narsingdi",
+    "resalePrice": 80000,
+    "orginalPrice": 143000,
+    "usedYears": 1,
+    "categoryId": 2,
+    "sellerName": "Sumon Kaysar",
+    "sellerVerified": true,
+    "postedTime": "24th Nov 2022"
+  },
+  {
+    "_id": 5,
+    "name": "BMW I8",
+    "img": "https://imgd.aeplcdn.com/1056x594/n/pofgura_1428547.jpg?q=75",
+    "location": "Panchdona, Narsingdi",
+    "resalePrice": 80000,
+    "orginalPrice": 143000,
+    "usedYears": 1,
+    "categoryId": 3,
+    "sellerName": "Sumon Kaysar",
+    "sellerVerified": true,
+    "postedTime": "24th Nov 2022"
+  },
+  {
+    "_id": 6,
+    "name": "BMW I8",
+    "img": "https://imgd.aeplcdn.com/1056x594/n/pofgura_1428547.jpg?q=75",
+    "location": "Panchdona, Narsingdi",
+    "resalePrice": 80000,
+    "orginalPrice": 143000,
+    "usedYears": 1,
+    "categoryId": 3,
+    "sellerName": "Sumon Kaysar",
+    "sellerVerified": true,
+    "postedTime": "24th Nov 2022"
+  }
+]
