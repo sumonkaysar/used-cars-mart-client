@@ -13,7 +13,7 @@ const CarsBookingModal = ({bookCar}) => {
           <input defaultValue={user?.displayName} type="text" className="input input-bordered w-full mb-2" disabled />
           <input defaultValue={user?.email} type="email" className="input input-bordered w-full mb-2" disabled />
           <input defaultValue={name} type="text" className="input input-bordered w-full mb-2" disabled />
-          <input defaultValue={`$${resalePrice}`} type="text" className="input input-bordered w-full mb-2" disabled />
+          <input value={`$${resalePrice}`} onChange={() => {}} type="text" className="input input-bordered w-full mb-2" disabled />
           <div className="modal-action">
             <label htmlFor="booking-modal" className="btn">Yay!</label>
           </div>

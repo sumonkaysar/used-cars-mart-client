@@ -16,7 +16,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/category/:id',
-        loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}`),
+        loader: ({params}) => fetch(`https://used-cars-mart-server.vercel.app/categories/${params.id}`),
         element: <Cars />,
       },
       {
