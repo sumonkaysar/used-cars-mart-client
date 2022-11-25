@@ -4,6 +4,7 @@ import Cars from "../Pages/Cars/Cars";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
       {
         path: '/category/:id',
         loader: ({params}) => fetch(`https://used-cars-mart-server.vercel.app/categories/${params.id}`),
-        element: <Cars />,
+        element: <PrivateRoute><Cars /></PrivateRoute>,
       },
       {
         path: '/login',

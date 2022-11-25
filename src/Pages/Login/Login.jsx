@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
 
@@ -8,13 +8,17 @@ const Login = () => {
   const {login} = useContext(AuthContext);
   const { register, formState: { errors }, handleSubmit } = useForm();
   const [loginError, setLoginError] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state.from.pathname || '/';
 
   const handleLogin = data => {
     setLoginError('');
     login(data.email, data.password)
     .then(result => {
-      const user = result.user;
-      toast.success("Logged in successfully")
+      toast.success("Logged in successfully");
+      navigate(from);
     })
     .catch(err => {
       console.error(err);
@@ -32,7 +36,7 @@ const Login = () => {
           break;
       
         default:
-          setLoginError(err.message)
+          setLoginError(err.message);
           break;
       }
     });
