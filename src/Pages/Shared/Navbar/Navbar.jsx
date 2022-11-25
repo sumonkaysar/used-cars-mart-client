@@ -1,11 +1,12 @@
 import { useContext } from "react";
+import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
-const Navbar = () => {
-  const {user, logout} = useContext(AuthContext);
-  
+const Navbar = ({ dashboard }) => {
+  const { user, logout } = useContext(AuthContext);
+
   const handleLogout = () => {
     logout().then(() => {
       toast.success("Logged out successfully");
@@ -17,21 +18,26 @@ const Navbar = () => {
     <li><Link to='/'>Home</Link></li>
     {
       user?.uid ? <>
-        {/* <li><Link to='/login'>login</Link></li> */}
-        <li><button onClick={handleLogout}>Logout</button></li>
-      </> : 
-      <li><Link to='/login'>login</Link></li>
+        <li><Link to='/dashboard'>Dashboard</Link></li>
+        <li><button className="btn btn-sm md:pt-2 pb-7 lg:pb-2 btn-outline rounded-lg" onClick={handleLogout}>Logout</button></li>
+      </> :
+        <li><Link to='/login'>Login</Link></li>
     }
   </>
 
   return (
-    <nav className="bg-primary text-primary-content fixed w-full z-10">
+    <nav className="bg-primary text-primary-content fixed w-full z-20">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
-          <Link to='/' className="btn btn-ghost normal-case text-xl">Used Cars Mart</Link>
+          {
+            dashboard && <label className="ml-5 cursor-pointer lg:hidden" htmlFor="dashboardMenu">
+              <FaBars />
+            </label>
+          }
+          <Link to='/' className="normal-case text-xl ml-5">Used Cars Mart</Link>
         </div>
         <div className="navbar-end hidden lg:flex">
-          <ul className="menu menu-horizontal p-0">
+          <ul className="menu menu-horizontal p-0 items-center">
             {menuItem}
           </ul>
         </div>

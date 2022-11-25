@@ -1,6 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
+import Dashboard from "../Layout/Dashboard";
 import Root from "../Layout/Root";
 import Cars from "../Pages/Cars/Cars";
+import AddCar from "../Pages/Dashboard/AddCar/AddCar";
+import MyCars from "../Pages/Dashboard/MyCars/MyCars";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
@@ -17,7 +20,6 @@ const router = createBrowserRouter([
       },
       {
         path: '/category/:id',
-        loader: ({params}) => fetch(`https://used-cars-mart-server.vercel.app/categories/${params.id}`),
         element: <PrivateRoute><Cars /></PrivateRoute>,
       },
       {
@@ -28,6 +30,20 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Signup />,
       },
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <PrivateRoute><Dashboard /></PrivateRoute>,
+    children: [
+      {
+        path: '/dashboard/myCars',
+        element: <MyCars />,
+      },
+      {
+        path: '/dashboard/addCar',
+        element: <AddCar />,
+      }
     ]
   }
 ]);
