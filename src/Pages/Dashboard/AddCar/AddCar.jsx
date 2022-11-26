@@ -27,11 +27,12 @@ const AddCar = () => {
       if (imgData.success) {
         const date = new Date().toLocaleDateString();
         data.img = imgData.data.url;
+        data.sellerEmail = user.email;
         data.sellerName = user.displayName;
         data.sellerVerified = isVerified;
         data.postedTime = date;
         
-        fetch('http://localhost:5000/addCar', {
+        fetch('http://localhost:5000/cars', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'
@@ -42,7 +43,7 @@ const AddCar = () => {
         .then(result => {
           if (result.acknowledged) {
             toast.success(`${data.name} added successfully`);
-            reset(data);
+            reset();
           }
         }).catch(err => console.error(err))
       }
