@@ -1,15 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import useCheckSellerVerification from "../../../hooks/useCheckSellerVerification";
 
 const AddCar = () => {
   const {user} = useContext(AuthContext);
-  const { register, formState: { errors }, handleSubmit } = useForm();
+  const { register, reset, formState: { errors }, handleSubmit } = useForm();
   const {data: categories = []} = useQuery({
     queryKey: ['categories'],
-    queryFn: () => fetch('http://localhost:5000/categories').then(res => res.json())
+    queryFn: () => fetch('https://used-cars-mart-server.vercel.app/categories').then(res => res.json())
   });
   const [isVerified] = useCheckSellerVerification(user?.email);
 
@@ -17,7 +18,7 @@ const AddCar = () => {
     const formData = new FormData();
     formData.append('image', data.image[0]);
 
-    fetch(`https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_imgbb_key}`, {
+    fetch(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imgbb_key}`, {
       method: 'POST',
       body: formData
     })
@@ -25,11 +26,25 @@ const AddCar = () => {
     .then(imgData => {
       if (imgData.success) {
         const date = new Date().toLocaleDateString();
-        console.log(date);
         data.img = imgData.data.url;
         data.sellerName = user.displayName;
         data.sellerVerified = isVerified;
-        console.log(data);
+        data.postedTime = date;
+        
+        fetch('http://localhost:5000/addCar', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(result => {
+          if (result.acknowledged) {
+            toast.success(`${data.name} added successfully`);
+            reset(data);
+          }
+        }).catch(err => console.error(err))
       }
     }).catch(err => console.error(err))
   }

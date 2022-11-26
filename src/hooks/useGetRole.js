@@ -4,7 +4,7 @@ const useGetRole = email => {
   const [role, setRole] = useState('');
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/users/role?email=${email}`)
+      fetch(`https://used-cars-mart-server.vercel.app/users/role?email=${email}`)
         .then(res => res.json())
         .then(data => {
           setRole(data.role);

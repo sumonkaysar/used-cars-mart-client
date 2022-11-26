@@ -11,7 +11,7 @@ const Cars = () => {
   const { id } = useParams();
   const { data: cars = [], refetch } = useQuery({
     queryKey: ['cars', id, user?.email],
-    queryFn: () => fetch(`http://localhost:5000/categories/${id}?email=${user?.email}`).then(res => res.json())
+    queryFn: () => fetch(`https://used-cars-mart-server.vercel.app/categories/${id}?email=${user?.email}`).then(res => res.json())
   });
 
   return (
