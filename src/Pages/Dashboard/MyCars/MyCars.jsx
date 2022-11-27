@@ -15,8 +15,22 @@ const MyCars = () => {
 
   const closeModal = () => setDeletingCar(null);
 
-  const handlePublish = id => {
-
+  const handlePublish = (id, name) => {
+    fetch(`http://localhost:5000/cars/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({published: true})
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.modifiedCount > 0) {
+          toast.success(`${name} deleted Successfully`);
+          refetch();
+        }
+      })
+      .catch(err => console.error(err));
   }
 
   const handleDeleteCar = ({_id: id, name}) => {
@@ -63,7 +77,8 @@ const MyCars = () => {
                 <td>{car.status || 'Available'}</td>
                 <td>
                   {
-                    car.status !== 'Sold' && !car.published && <button className="btn btn-sm btn-primary text-white">Publish</button>
+                    car.status !== 'Sold' && !car.published && <button
+                    onClick={() => handlePublish(car._id, car.name)} className="btn btn-sm btn-primary text-white">Publish</button>
                   }
                   {
                     car.status !== 'Sold' && car.published && 'Published'
