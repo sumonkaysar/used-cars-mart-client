@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { AuthContext } from "../../../contexts/AuthProvider";
-import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
+import { AuthContext } from "../../../../contexts/AuthProvider";
+import ConfirmationModal from "../../../Shared/ConfirmationModal/ConfirmationModal";
 
 const MyCars = () => {
   const { user } = useContext(AuthContext);

@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { AuthContext } from "../../../contexts/AuthProvider";
-import useCheckSellerVerification from "../../../hooks/useCheckSellerVerification";
+import { AuthContext } from "../../../../contexts/AuthProvider";
+import useCheckSellerVerification from "../../../../hooks/useCheckSellerVerification";
 
 const AddCar = () => {
   const {user} = useContext(AuthContext);
@@ -32,6 +32,7 @@ const AddCar = () => {
         data.sellerEmail = user.email;
         data.sellerName = user.displayName;
         data.sellerVerified = isVerified;
+        data.status = 'Available';
         data.postedTime = date;
         
         fetch('http://localhost:5000/cars', {

@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
 
@@ -7,6 +8,7 @@ const Signup = () => {
   const { signup, updateUser } = useContext(AuthContext);
   const { register, formState: { errors }, handleSubmit } = useForm();
   const [signupError, setSignupError] = useState('');
+  const navigate = useNavigate();
 
   const handleSignup = data => {
     console.log(data);
@@ -50,6 +52,7 @@ const Signup = () => {
     })
     .then(res => res.json())
     .then(data => {
+      navigate('/');
     })
     .catch(err => console.error(err));
   }
@@ -116,6 +119,7 @@ const Signup = () => {
         </div>
         <button className="btn btn-primary w-full mt-4" type="submit">Signup</button>
         {signupError && <p className="text-error text-center font-bold">{signupError}</p>}
+        <p className="text-sm font-semibold text-center mt-3">Already have an account? <Link className="link font-bold text-blue-500 hover:text-blue-400" to="/login">Click here to login</Link></p>
       </form>
     </div>
   );

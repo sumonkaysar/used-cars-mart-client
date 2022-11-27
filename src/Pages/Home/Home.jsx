@@ -1,4 +1,4 @@
-import AdvertisedItems from "./AdvertisedItems/AdvertisedItems";
+import AdvertisedCars from "./AdvertisedCars/AdvertisedCars";
 import Banner from "./Banner/Banner";
 import Categories from "./Categories/Categories";
 
@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      <AdvertisedItems />
+      <AdvertisedCars />
       <Categories />
     </div>
   );
