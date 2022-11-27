@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import useCheckSellerVerification from "../../../hooks/useCheckSellerVerification";
@@ -13,6 +14,7 @@ const AddCar = () => {
     queryFn: () => fetch('https://used-cars-mart-server.vercel.app/categories').then(res => res.json())
   });
   const [isVerified] = useCheckSellerVerification(user?.email);
+  const navigate = useNavigate();
 
   const handleAddCar = data => {
     const formData = new FormData();
@@ -44,6 +46,7 @@ const AddCar = () => {
           if (result.acknowledged) {
             toast.success(`${data.name} added successfully`);
             reset();
+            navigate('/dashboard/mycars');
           }
         }).catch(err => console.error(err))
       }
