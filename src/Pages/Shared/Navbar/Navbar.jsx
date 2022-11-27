@@ -3,6 +3,7 @@ import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import logo from "../../../assets/logo/logo.png";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -30,7 +31,7 @@ const Navbar = () => {
     <nav className="bg-primary text-primary-content fixed w-full z-20">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
-          <Link to='/' className="normal-case text-xl ml-5">Used Cars Mart</Link>
+          <Link to='/' className="normal-case text-xl ml-5 flex items-center gap-3"><img className="w-10" src={logo} alt="Logo" /> Used Cars Mart</Link>
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal p-0 items-center">
