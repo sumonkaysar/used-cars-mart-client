@@ -23,4 +23,8 @@ Used Cars Mart - This is a website to buy or sale the used cars. The best websit
 * Firebase
 * Stripe
 
+### Admin
+Admin Email: sumon@sk.com
+Admin Password: lastOne99
+
 Live Site: [Used Cars Mart](https://used-cars-mart.web.app/)
