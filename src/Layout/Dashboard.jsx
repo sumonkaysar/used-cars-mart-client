@@ -13,7 +13,10 @@ const Dashboard = () => {
   const sideMenu = <>
     {
       role === 'buyer' &&
-      <li><Link to="/dashboard/myOrders">My Orders</Link></li>
+      <>
+        <li><Link to="/dashboard/myOrders">My Orders</Link></li>
+        <li><Link to="/dashboard/myWishLists">My Wish Lists</Link></li>
+      </>
     }
     {
       role === 'seller' &&
@@ -41,7 +44,7 @@ const Dashboard = () => {
           <div className="drawer-content">
             <div className="flex lg:hidden justify-center mt-4">
               <ul className="menu menu-horizontal bg-slate-500 text-white rounded-box">
-                { sideMenu }
+                {sideMenu}
               </ul>
             </div>
             <Outlet />

@@ -10,9 +10,8 @@ const Banner = () => {
         <div className="hero-overlay bg-opacity-50"></div>
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-            <p className="mb-5"></p>
-            <button className="btn btn-primary">Get Started</button>
+            <h2 className="mb-5 text-4xl font-semibold">Used Cars Mart</h2>
+            <p className="mb-5">The best website to buy or resale used cars. Used Cars Mart helps you get a great deal on a used car by giving you up-to-the-minute car pricing information so that you're fully armed with the knowledge you need as you shop for a car</p>
           </div>
         </div>
       </div>

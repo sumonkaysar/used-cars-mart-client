@@ -6,13 +6,18 @@ import Cars from "../Pages/Cars/Cars";
 import AllBuyers from "../Pages/Dashboard/Admin/AllBuyers/AllBuyers";
 import AllSellers from "../Pages/Dashboard/Admin/AllSellers/AllSellers";
 import ReportedCars from "../Pages/Dashboard/Admin/ReportedCars/ReportedCars";
+import MyOrders from "../Pages/Dashboard/Buyers/MyOrders/MyOrders";
+import MyWishLists from "../Pages/Dashboard/Buyers/MyWishLists/MyWishLists";
+import Payment from "../Pages/Dashboard/Buyers/Payment/Payment";
 import AddCar from "../Pages/Dashboard/Seller/AddCar/AddCar";
 import MyCars from "../Pages/Dashboard/Seller/MyCars/MyCars";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
+import SellerRoute from "./SellerRoute";
 
 const router = createBrowserRouter([
   {
@@ -49,23 +54,36 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/dashboard/myCars',
-        element: <MyCars />,
+        element: <SellerRoute><MyCars /></SellerRoute>,
       },
       {
         path: '/dashboard/addCar',
-        element: <AddCar />,
+        element: <SellerRoute><AddCar /></SellerRoute>,
       },
       {
         path: '/dashboard/allSellers',
-        element: <AllSellers />,
+        element: <AdminRoute><AllSellers /></AdminRoute>,
       },
       {
         path: '/dashboard/allBuyers',
-        element: <AllBuyers />,
+        element: <AdminRoute><AllBuyers /></AdminRoute>,
       },
       {
         path: '/dashboard/reportedCars',
-        element: <ReportedCars />,
+        element: <AdminRoute><ReportedCars /></AdminRoute>,
+      },
+      {
+        path: '/dashboard/myOrders',
+        element: <MyOrders />,
+      },
+      {
+        path: '/dashboard/myWishLists',
+        element: <MyWishLists />,
+      },
+      {
+        path: '/dashboard/payment/:id',
+        element: <Payment />,
+        loader: ({params}) => fetch(`https://used-cars-mart-server.vercel.app/bookCar/${params.id}`)
       },
     ]
   }

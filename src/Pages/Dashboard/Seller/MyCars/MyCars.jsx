@@ -48,8 +48,8 @@ const MyCars = () => {
   }
 
   return (
-    <div>
-      <h2 className="text-3xl font-semibold">My Cars</h2>
+    <div className="md:mx-8">
+      <h2 className="text-3xl font-semibold text-center my-6">My Cars</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>

@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 const CarsBookingModal = ({ bookCar, setBookCar, refetch }) => {
   const { user } = useContext(AuthContext);
-  const { _id, name, resalePrice } = bookCar;
+  const { _id, name, img, resalePrice } = bookCar;
 
   const handleBooking = e => {
     e.preventDefault();
@@ -13,6 +13,7 @@ const CarsBookingModal = ({ bookCar, setBookCar, refetch }) => {
     const buyerEmail = form.buyerEmail.value;
     const carId = form.carId.value;
     const carName = form.carName.value;
+    const carImg = form.carImg.value;
     const price = Number(form.price.value);
     const phone = form.phone.value;
     const meetingLocation = form.meetingLocation.value;
@@ -22,6 +23,7 @@ const CarsBookingModal = ({ bookCar, setBookCar, refetch }) => {
       buyerEmail,
       carId,
       carName,
+      carImg,
       price,
       phone,
       meetingLocation
@@ -122,6 +124,13 @@ const CarsBookingModal = ({ bookCar, setBookCar, refetch }) => {
                 required
               />
             </div>
+            <input
+              id="carImg"
+              name="carImg"
+              defaultValue={img}
+              type="text"
+              hidden
+            />
             <div className="">
               <button className="btn btn-primary" type="submit">Book</button>
               <label htmlFor="booking-modal" className="btn btn-outline ml-3">Cancel</label>

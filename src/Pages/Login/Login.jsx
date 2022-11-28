@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from "firebase/auth";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -5,11 +6,13 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
-  const {login} = useContext(AuthContext);
+  const {login, loginWithProvider} = useContext(AuthContext);
   const { register, formState: { errors }, handleSubmit } = useForm();
   const [loginError, setLoginError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
+
+  const googleProvider = new GoogleAuthProvider();
 
   const from = location?.state?.from?.pathname || '/';
 
@@ -42,6 +45,48 @@ const Login = () => {
     });
   }
 
+  const handleProviderLogin = () => {
+    loginWithProvider(googleProvider)
+    .then(result => {
+      toast.success('Logged in Successfully');
+      saveUser({
+        name: result.user.displayName,
+        email: result.user.email,
+        role: 'buyer'
+      });
+    }).catch(err => console.error(err))
+  }
+
+  const saveUser = (user) => {
+    fetch('https://used-cars-mart-server.vercel.app/users', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.userExists) {
+        console.log('a');
+      }else{
+        getUserToken(user.email);
+      }
+    })
+    .catch(err => console.error(err));
+  }
+
+  const getUserToken = email => {
+    fetch(`https://used-cars-mart-server.vercel.app/jwt?email=${email}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.accessToken) {
+        localStorage.setItem('accessToken', data.accessToken);
+        navigate('/');
+      }
+    }).catch(err => console.error(err))
+  }
+
   return (
     <div className="mx-5">
       <form onSubmit={handleSubmit(handleLogin)} className="w-full md:w-3/4 lg:w-1/2 xl:w-2/5 mx-auto shadow-xl p-5 rounded-lg">
@@ -70,7 +115,7 @@ const Login = () => {
         {loginError && <p className="text-error text-center font-bold">{loginError}</p>}
         <p className="text-sm font-semibold text-center mt-3">New to Used Car Mart? <Link className="link font-bold text-blue-500 hover:text-blue-400" to="/signup">Click here to create an account</Link></p>
         <div className="divider">OR</div>
-        <button type="button" className="btn btn-primary btn-outline w-full">Login With Google</button>
+        <button onClick={handleProviderLogin} type="button" className="btn btn-primary btn-outline w-full">Login With Google</button>
       </form>
     </div>
   );

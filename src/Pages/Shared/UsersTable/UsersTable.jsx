@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaCheckCircle } from "react-icons/fa";
 import { toast } from "react-toastify";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 
@@ -21,7 +22,6 @@ const UsersTable = ({ users, refetch, seller, handleVerifySeller }) => {
   }
 
   const closeDeletingModal = () => setDeletingUser(null);
-  const closeMakeAdminModal = () => setMakeUserAdmin(null);
 
   return (
     <div>
@@ -33,7 +33,7 @@ const UsersTable = ({ users, refetch, seller, handleVerifySeller }) => {
               <th>Name</th>
               <th>Email</th>
               {
-                seller && <th>Admin</th>
+                seller && <th>Verified</th>
               }
               <th>Action</th>
             </tr>
@@ -47,7 +47,7 @@ const UsersTable = ({ users, refetch, seller, handleVerifySeller }) => {
                 {
                   seller && <td>
                     {
-                      user.verified ? 'Verified' : <label
+                      user.verified ? <FaCheckCircle color="#0000ff" /> : <label
                         onClick={() => handleVerifySeller(user)}
                         htmlFor="confirmation-modal"
                         className="btn btn-primary btn-sm"
