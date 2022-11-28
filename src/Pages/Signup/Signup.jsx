@@ -57,7 +57,7 @@ const Signup = () => {
   }
 
   const getUserToken = email => {
-    fetch(`http://localhost:5000/jwt?email=${email}`)
+    fetch(`https://used-cars-mart-server.vercel.app/jwt?email=${email}`)
     .then(res => res.json())
     .then(data => {
       if (data.accessToken) {

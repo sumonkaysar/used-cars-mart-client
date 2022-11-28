@@ -9,7 +9,7 @@ const AllSellers = () => {
   });
 
   const handleVerifySeller = seller => {
-    fetch(`http://localhost:5000/users/${seller._id}`, {
+    fetch(`https://used-cars-mart-server.vercel.app/users/${seller._id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json'
