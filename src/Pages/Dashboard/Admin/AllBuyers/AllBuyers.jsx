@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import UsersTable from "../AllSellers/UsersTable/UsersTable";
+import UsersTable from "../../../Shared/UsersTable/UsersTable";
 
 const AllBuyers = () => {
   const { data: allBuyers = [], refetch } = useQuery({
     queryKey: ['allBuyers'],
-    queryFn: () => fetch('http://localhost:5000/users?role=buyer').then(res => res.json())
+    queryFn: () => fetch('https://used-cars-mart-server.vercel.app/users?role=buyer').then(res => res.json())
   });
 
   return (

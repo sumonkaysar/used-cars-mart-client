@@ -10,13 +10,13 @@ const MyCars = () => {
 
   const { data: myCars = [], refetch } = useQuery({
     queryKey: ['myCars'],
-    queryFn: () => fetch(`http://localhost:5000/cars?email=${user?.email}`).then(res => res.json())
+    queryFn: () => fetch(`https://used-cars-mart-server.vercel.app/cars?email=${user?.email}`).then(res => res.json())
   });
 
   const closeModal = () => setDeletingCar(null);
 
   const handlePublish = (id, name) => {
-    fetch(`http://localhost:5000/cars/${id}`, {
+    fetch(`https://used-cars-mart-server.vercel.app/cars/${id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json'
@@ -34,7 +34,7 @@ const MyCars = () => {
   }
 
   const handleDeleteCar = ({_id: id, name}) => {
-    fetch(`http://localhost:5000/cars/${id}`, {
+    fetch(`https://used-cars-mart-server.vercel.app/cars/${id}`, {
       method: 'DELETE'
     })
       .then(res => res.json())

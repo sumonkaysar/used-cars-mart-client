@@ -1,11 +1,31 @@
 import { useQuery } from "@tanstack/react-query";
-import UsersTable from "./UsersTable/UsersTable";
+import { toast } from "react-toastify";
+import UsersTable from "../../../Shared/UsersTable/UsersTable";
 
 const AllSellers = () => {
   const { data: allSellers = [], refetch } = useQuery({
     queryKey: ['allSellers'],
-    queryFn: () => fetch('http://localhost:5000/users?role=seller').then(res => res.json())
+    queryFn: () => fetch('https://used-cars-mart-server.vercel.app/users?role=seller').then(res => res.json())
   });
+
+  const handleVerifySeller = seller => {
+    fetch(`http://localhost:5000/users/${seller._id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({verified: true})
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      if (data.modifiedCount > 0) {
+        toast.success(`${seller.name} is verified successfully`);
+        refetch();
+      }
+    })
+    .catch(err => console.error(err));
+  }
 
   return (
     <div className="sm:mx-10">
@@ -13,6 +33,8 @@ const AllSellers = () => {
       <UsersTable
         users={allSellers}
         refetch={refetch}
+        seller={true}
+        handleVerifySeller={handleVerifySeller}
       />
     </div>
   );

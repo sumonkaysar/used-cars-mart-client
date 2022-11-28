@@ -1,7 +1,14 @@
 import { FaCheckCircle } from 'react-icons/fa';
+import useCheckSellerVerification from '../../../hooks/useCheckSellerVerification';
 
 const CarDetails = ({ car, setBookCar }) => {
-  const { name, img, location, resalePrice, originalPrice, usedYears, sellerName, sellerVerified, postedTime } = car;
+  const { name, img, location, resalePrice, originalPrice, usedYears, sellerName, postedTime } = car;
+  const [checkverify] = useCheckSellerVerification();
+
+  const checkSellerVerification = email => {
+    const [isVerified] = checkverify(email);
+    return isVerified;
+  }
 
   return (
     <div className="card bg-base-100 shadow-xl">
@@ -12,7 +19,7 @@ const CarDetails = ({ car, setBookCar }) => {
         <p className="-mb-2">Original Price: <span className="font-bold">${originalPrice}</span></p>
         <p className="-mb-2">Location: <span className="font-bold">{location}</span></p>
         <p className="-mb-2">Years Used: <span className="font-bold">{usedYears} {usedYears.length > 1 ? 'years' : 'year'}</span></p>
-        <p className="-mb-3">Seller: <span className="font-bold inline-flex items-center gap-2">{sellerName} {sellerVerified && <FaCheckCircle className='text-xl' color='#1a1aff' />}</span></p>
+        <p className="-mb-3">Seller: <span className="font-bold inline-flex items-center gap-2">{sellerName} {checkSellerVerification(car.sellerEmail) && <FaCheckCircle className='text-xl' color='#1a1aff' />}</span></p>
         <p><small>Posted on: <span className="font-bold">{postedTime}</span></small></p>
         <div className="card-actions">
           <label

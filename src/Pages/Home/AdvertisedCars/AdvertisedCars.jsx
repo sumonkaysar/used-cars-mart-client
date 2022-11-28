@@ -7,7 +7,7 @@ const AdvertisedCars = () => {
   const [bookCar, setBookCar] = useState(null);
   const { data: cars = [], refetch } = useQuery({
     queryKey: ['cars', 'published'],
-    queryFn: () => fetch(`http://localhost:5000/cars?published=true`).then(res => res.json())
+    queryFn: () => fetch(`https://used-cars-mart-server.vercel.app/cars?published=true`).then(res => res.json())
   });
 
   return (

@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../../contexts/AuthProvider";
-import useCheckSellerVerification from "../../../../hooks/useCheckSellerVerification";
 
 const AddCar = () => {
   const {user} = useContext(AuthContext);
@@ -13,7 +12,6 @@ const AddCar = () => {
     queryKey: ['categories'],
     queryFn: () => fetch('https://used-cars-mart-server.vercel.app/categories').then(res => res.json())
   });
-  const [isVerified] = useCheckSellerVerification(user?.email);
   const navigate = useNavigate();
 
   const handleAddCar = data => {
@@ -31,11 +29,10 @@ const AddCar = () => {
         data.img = imgData.data.url;
         data.sellerEmail = user.email;
         data.sellerName = user.displayName;
-        data.sellerVerified = isVerified;
         data.status = 'Available';
         data.postedTime = date;
         
-        fetch('http://localhost:5000/cars', {
+        fetch('https://used-cars-mart-server.vercel.app/cars', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'

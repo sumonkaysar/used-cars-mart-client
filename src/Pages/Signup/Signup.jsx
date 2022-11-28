@@ -11,7 +11,6 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const handleSignup = data => {
-    console.log(data);
     setSignupError('');
     signup(data.email, data.password)
       .then(result => {
@@ -52,9 +51,20 @@ const Signup = () => {
     })
     .then(res => res.json())
     .then(data => {
-      navigate('/');
+      getUserToken(user.email);
     })
     .catch(err => console.error(err));
+  }
+
+  const getUserToken = email => {
+    fetch(`http://localhost:5000/jwt?email=${email}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.accessToken) {
+        localStorage.setItem('accessToken', data.accessToken);
+        navigate('/');
+      }
+    }).catch(err => console.error(err))
   }
   
   return (
