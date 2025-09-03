@@ -6,11 +6,13 @@ import Contact from "./Contact/Contact";
 const Home = () => {
 
   return (
-    <div>
+    <div className="scroll-smooth">
       <Banner />
-      <AdvertisedCars />
-      <Categories />
-      <Contact />
+      <div className="max-w-[1500px] mx-auto">
+        <AdvertisedCars />
+        <Categories />
+        <Contact />
+      </div>
     </div>
   );
 }

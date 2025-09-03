@@ -1,7 +1,12 @@
+import { useContext } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
 import useCheckSellerVerification from '../../../hooks/useCheckSellerVerification';
 
 const CarDetails = ({ car, setBookCar }) => {
+  const {user} = useContext(AuthContext);
+  const navigate = useNavigate();
   const { name, img, location, resalePrice, originalPrice, usedYears, sellerName, postedTime } = car;
   const [checkverify] = useCheckSellerVerification();
 
@@ -10,9 +15,17 @@ const CarDetails = ({ car, setBookCar }) => {
     return isVerified;
   }
 
+  const handleBookCar = car => {
+    if (user) {
+      setBookCar(car);
+    }else{
+      navigate("/login");
+    }
+  }
+
   return (
     <div className="card bg-base-100 shadow-xl">
-      <figure><img src={img} alt="Shoes" /></figure>
+      <figure className='h-[220px] overflow-hidden rounded-2xl'><img className='w-full h-full object-cover' src={img} alt={name} /></figure>
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
         <p className="-mb-2">Resale Price: <span className="font-bold">${resalePrice}</span></p>
@@ -23,7 +36,7 @@ const CarDetails = ({ car, setBookCar }) => {
         <p><small>Posted on: <span className="font-bold">{postedTime}</span></small></p>
         <div className="card-actions">
           <label
-            onClick={() => setBookCar(car)}
+            onClick={() => handleBookCar(car)}
             htmlFor="booking-modal"
             className="btn btn-primary"
           >Book Now</label>

@@ -68,8 +68,8 @@ const Signup = () => {
   }
   
   return (
-    <div className="mx-5">
-      <form onSubmit={handleSubmit(handleSignup)} className="w-full md:w-3/4 lg:w-1/2 xl:w-2/5 mx-auto shadow-xl p-5 rounded-lg">
+    <div className="mx-5 pt-16">
+      <form onSubmit={handleSubmit(handleSignup)} className="w-full bg-white md:w-3/4 lg:w-1/2 xl:w-2/5 mx-auto shadow-xl p-5 rounded-lg">
         <h2 className="text-2xl font-bold text-center mb-5">Create Account</h2>
         <div className="form-control w-full mb-3">
           <input

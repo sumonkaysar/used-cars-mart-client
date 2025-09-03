@@ -5,9 +5,9 @@ import Navbar from "../Pages/Shared/Navbar/Navbar";
 const Root = () => {
 
   return (
-    <div>
+    <div className="bg-slate-100">
       <Navbar />
-      <div className="pt-32 mb-20 container mx-auto">
+      <div className="pt-16 mb-20">
         <Outlet />
       </div>
       <Footer />

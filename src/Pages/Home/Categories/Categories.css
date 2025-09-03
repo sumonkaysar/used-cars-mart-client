@@ -1,0 +1,11 @@
+.category:hover .card-body{
+    transform: translateY(0);
+}
+
+.category:hover .category-name{
+    display: none;
+}
+
+.category:hover .dark-layer{
+    display: none;
+}

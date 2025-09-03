@@ -41,7 +41,7 @@ const Dashboard = () => {
       <div className="pt-16">
         <div className="drawer drawer-mobile drawer-end" style={drawerStyle}>
           <input id="dashboardMenu" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content">
+          <div className="drawer-content bg-white">
             <div className="flex lg:hidden justify-center mt-4">
               <ul className="menu menu-horizontal bg-slate-500 text-white rounded-box">
                 {sideMenu}
@@ -50,7 +50,7 @@ const Dashboard = () => {
             <Outlet />
           </div>
           <div className="drawer-side">
-            <ul className="menu p-4 w-80 bg-base-100 text-base-content hidden lg:block">
+            <ul className="menu p-4 w-80 bg-[#d6dfff] text-base-content hidden lg:block">
               {sideMenu}
             </ul>
           </div>

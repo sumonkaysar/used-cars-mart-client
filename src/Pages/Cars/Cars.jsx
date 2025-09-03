@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import CarDetails from "./CarDetails/CarDetails";
@@ -14,8 +14,10 @@ const Cars = () => {
     queryFn: () => fetch(`https://used-cars-mart-server.vercel.app/categories/${id}?email=${user?.email}`).then(res => res.json())
   });
 
+  // useEffect()
+
   return (
-    <div>
+    <div className="pt-5 sm:pt-10 max-w-[1500px] mx-auto">
       <h2 className="text-3xl font-semibold">{ }</h2>
       {
         cars.length > 0 ?

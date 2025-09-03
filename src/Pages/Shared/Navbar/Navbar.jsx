@@ -28,7 +28,7 @@ const Navbar = () => {
   </>
 
   return (
-    <nav className="bg-primary text-primary-content fixed w-full z-20">
+    <nav className="bg-primary text-primary-content fixed w-full z-[999]">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
           <Link to='/' className="normal-case text-xl ml-5 flex items-center gap-3"><img className="w-10" src={logo} alt="Logo" /> Used Cars Mart</Link>
